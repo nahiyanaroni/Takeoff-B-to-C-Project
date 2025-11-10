@@ -3,11 +3,11 @@ import "./globals.css";
 
 import React from "react";
 import PropTypes from "prop-types";
+import Navbar from "@/components/Home/Navbar/Navbar";
+import Footer from "@/components/Home/Footer/Footer";
 
 // import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
-import Footer from "../../components/home/footer/footer";
-import Navbar from "../../components/home/navbar/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
