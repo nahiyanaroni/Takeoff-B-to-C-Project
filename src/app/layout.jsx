@@ -1,10 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../../styles/globals.css";
 
 import React from "react";
 import PropTypes from "prop-types";
-import Navbar from "@/components/Home/Navbar/Navbar";
-import Footer from "@/components/Home/Footer/Footer";
+import Navbar from "@/components/common/Navbar/Navbar";
+import Footer from "@/components/common/Footer/Footer";
 
 // import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
