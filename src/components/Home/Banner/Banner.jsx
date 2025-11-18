@@ -18,7 +18,7 @@ export default function Banner() {
       </video>
 
       {/* MOBILE BACKGROUND (optional) */}
-      <div className="block md:hidden w-full h-[320px] bg-gradient-to-b from-blue-800 to-blue-500"></div>
+      <div className="block md:hidden w-full h-[320px] bg-gradient-to-b from-blue-300 to-blue-200"></div>
 
       {/* Center Title Text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
@@ -31,7 +31,7 @@ export default function Banner() {
       </div>
 
       {/* Search Card */}
-      <div className="absolute w-full px-2 sm:px-6 md:px-10 lg:px-80 top-60 md:top-120">
+      <div className="absolute w-full px-2 sm:px-6 md:px-10 lg:px-20 top-60 md:top-80 lg:top-120 xl:top-120 xl:px-70">
         <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6">
 
           {/* Trip Type Radio Buttons */}

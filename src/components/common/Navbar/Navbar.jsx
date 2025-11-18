@@ -1,9 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
+import { PiArmchairFill } from "react-icons/pi";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { FaPlaneDeparture } from "react-icons/fa6";
+
+import { GrDocumentSound } from "react-icons/gr";
+import { FaWeixin } from "react-icons/fa6";
 // import { FaChevronUp } from "react-icons/fa";
 
 export default function Navbar() {
@@ -19,11 +23,11 @@ export default function Navbar() {
   const isHome = pathname === "/";
   const baseColor = isHome
     ? isScrolled
-      ? "bg-white"
+      ? "bg-sky-200"
       : "bg-transparent"
     : isScrolled
-    ? "bg-white"
-    : "bg-gray-100";
+    ? "bg-blue-200"
+    : "bg-blue-200";
 
   return (
     <div
@@ -71,12 +75,13 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul
           className={`menu menu-horizontal text-lg font-semibold px-1 gap-8 ${
-            isHome && !isScrolled ? "text-white" : "text-black"
+            "text-gray-700"
           }`}
         >
-          <li><Link href="/" className={pathname === "/" ? "text-yellow-600" : ""}>Home</Link></li>
-          <li><Link href="/about" className={pathname === "/about" ? "text-yellow-600" : ""}>About</Link></li>
-          <li><Link href="/contact" className={pathname === "/contact" ? "text-yellow-600" : ""}>Contact</Link></li>
+          <li><Link href="/" className={pathname === "/" ? "text-yellow-600" : ""}> <FaPlaneDeparture />
+ Flight</Link></li>
+          <li><Link href="/about" className={pathname === "/about" ? "text-yellow-600" : ""}> <GrDocumentSound />Promotions</Link></li>
+          <li><Link href="/contact" className={pathname === "/contact" ? "text-yellow-600" : ""}><PiArmchairFill />Business Class</Link></li>
         </ul>
       </div>
 
@@ -86,11 +91,11 @@ export default function Navbar() {
           className={`btn border-none rounded-xl flex items-center gap-2 shadow-sm ${
             isHome && !isScrolled
               ? "bg-transparent text-white"
-              : "bg-gray-100 text-black"
+              : "bg-blue-400 text-black"
           }`}
         >
-          <Image src="/flag.png" alt="flag" height={100} width={100} className="w-5 h-5" />
-          English
+       <FaWeixin className="text-4xl text-amber-700" />
+
           {/* <FaChevronUp
             className={isHome && !isScrolled ? "text-white" : "text-gray-600"}
           /> */}
