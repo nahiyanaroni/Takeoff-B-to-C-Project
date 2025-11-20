@@ -5,10 +5,8 @@ import { PiArmchairFill } from "react-icons/pi";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { FaPlaneDeparture } from "react-icons/fa6";
-
 import { GrDocumentSound } from "react-icons/gr";
 import { FaWeixin } from "react-icons/fa6";
-// import { FaChevronUp } from "react-icons/fa";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,14 +18,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isHome = pathname === "/";
+   const isHome = pathname === "/";
   const baseColor = isHome
     ? isScrolled
-      ? "bg-sky-200"
+      ? "bg-sky-900"
       : "bg-transparent"
     : isScrolled
-    ? "bg-blue-200"
-    : "bg-blue-200";
+    ? "bg-blue-900"
+    : "bg-blue-900";
+
 
   return (
     <div
@@ -39,7 +38,7 @@ export default function Navbar() {
       <div className="navbar-start">
         {/* Mobile Menu */}
         <div className="dropdown lg:hidden">
-          <div tabIndex={0} role="button" className="btn btn-ghost">
+          <div tabIndex={0} role="button" className="btn btn-ghost text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -73,32 +72,38 @@ export default function Navbar() {
 
       {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
-        <ul
-          className={`menu menu-horizontal text-lg font-semibold px-1 gap-8 ${
-            "text-gray-700"
-          }`}
-        >
-          <li><Link href="/" className={pathname === "/" ? "text-yellow-600" : ""}> <FaPlaneDeparture />
- Flight</Link></li>
-          <li><Link href="/about" className={pathname === "/about" ? "text-yellow-600" : ""}> <GrDocumentSound />Promotions</Link></li>
-          <li><Link href="/contact" className={pathname === "/contact" ? "text-yellow-600" : ""}><PiArmchairFill />Business Class</Link></li>
+       <ul
+  className={`menu menu-horizontal text-lg font-semibold px-1 gap-8 
+    ${!isScrolled && isHome ? "text-white" : "text-black"}`}
+>
+
+          <li>
+            <Link href="/" className={`flex items-center gap-2 ${pathname === "/" ? "text-yellow-600" : "text-white"}`}>
+              <FaPlaneDeparture />
+              Flight
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className={`flex items-center gap-2 ${pathname === "/about" ? "text-yellow-600" : "text-white"}`}>
+              <GrDocumentSound />
+              Promotions
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" className={`flex items-center gap-2 ${pathname === "/contact" ? "text-yellow-600" : "text-white"}`}>
+              <PiArmchairFill />
+              Business Class
+            </Link>
+          </li>
         </ul>
       </div>
 
       {/* Navbar End */}
       <div className="navbar-end">
         <button
-          className={`btn border-none rounded-xl flex items-center gap-2 shadow-sm ${
-            isHome && !isScrolled
-              ? "bg-transparent text-white"
-              : "bg-blue-400 text-black"
-          }`}
+          className="btn border-none rounded-xl flex items-center gap-2 shadow-sm bg-transparent text-white"
         >
-       <FaWeixin className="text-4xl text-amber-700" />
-
-          {/* <FaChevronUp
-            className={isHome && !isScrolled ? "text-white" : "text-gray-600"}
-          /> */}
+          <FaWeixin className="text-4xl text-amber-700" />
         </button>
       </div>
     </div>

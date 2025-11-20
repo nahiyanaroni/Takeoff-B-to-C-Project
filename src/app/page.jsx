@@ -1,6 +1,7 @@
 import Banner from "@/components/Home/Banner/Banner";
-import Smallcard from "@/components/Home/MainSection/Smallcard";
 
+import Smallcard from "@/components/Home/MainSection/Smallcard";
+import ScrollingImage from "@/components/Home/MainSection/ScrollingImage.jsx";
 export default function Home() {
   return (
     <div className="bg-white">
@@ -8,6 +9,7 @@ export default function Home() {
       <div className="bg-sky-100 h-420 md:h-270 lg:h-170 xl:160">
         <Smallcard />
       </div>
+      <ScrollingImage />
     </div>
   );
 }
