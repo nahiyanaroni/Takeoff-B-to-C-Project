@@ -2,6 +2,9 @@ import Banner from "@/components/Home/Banner/Banner";
 
 import Smallcard from "@/components/Home/MainSection/Smallcard";
 import ScrollingImage from "@/components/Home/MainSection/ScrollingImage.jsx";
+import FlightTracking from "@/components/Home/MainSection/flight-tracking";
+import AirlineLogo from "@/components/Home/MainSection/AirlineLogo";
+import FlightTop from "@/components/Home/MainSection/FlightTop";
 export default function Home() {
   return (
     <div className="bg-white">
@@ -10,6 +13,9 @@ export default function Home() {
         <Smallcard />
       </div>
       <ScrollingImage />
+     <FlightTracking />
+     <AirlineLogo />
+     <FlightTop />
     </div>
   );
 }
