@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Adventure Escapade Bonanza",
+    "image": "/pic1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Rechecking after deployment Flight",
+    "image": "/pic2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "GP Star Hot deals for Web",
+    "image": "/pic3.jpg"
+  },
+  {
+    "id": 4,
+    "title": "takeoff",
+    "image": "/pic4.jpg"
+  }
+]

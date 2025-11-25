@@ -1,24 +1,80 @@
-import Image from 'next/image'
-import React from 'react'
+"use client";
+
+import { IoIosArrowForward } from "react-icons/io";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import promotionData from "@/data/promotion.json";
 
 export default function Promotions() {
+  const [active, setActive] = useState("all");
+  const [items, setItems] = useState(promotionData);
+
+  useEffect(() => {
+    fetch("/promotion.json")
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  });
+
   return (
-    <div className='bg-white h-200 '>
-      <Image src="/pro.avif" alt="promotion-banner" width={2000} height={500} className='w-full h-50  md:h-80 xl:h-120 pt-10 object-cover'/>
-    <div className='mx-2 sm:mx-6 md:mx-10 lg:mx-20 xl:mx-70 p-10 md:mt-10'>
-    <h1>Promotions</h1>
-   <div>
-    <button></button>
-    <button></button>
-   </div>
-   <div>
-    <Image src="/promo1.jpg" alt="promotion1" width={500} height={300} className='w-full h-auto object-cover rounded-lg mb-5'/>
-    <div>
-      <h1></h1>
-      <p></p>
-    </div>
-   </div>
-    </div>
+    <div className="bg-white min-h-screen">
+      {/* Top banner */}
+     cc
+
+      <div className="mx-2 sm:mx-6 md:mx-10 lg:mx-20 xl:mx-40 p-5 md:mt-10 mb-20">
+        <h1 className="text-4xl font-bold">Promotions</h1>
+
+        {/* Buttons */}
+        <div className="flex gap-2 bg-gray-300 rounded-4xl p-1 w-fit my-5">
+          {/* All Offers */}
+          <button
+            onClick={() => setActive("all")}
+            className={`rounded-4xl px-4 py-2 cursor-pointer transition-all 
+              ${
+                active === "all"
+                  ? "bg-amber-600 text-white font-semibold" // active
+                  : "bg-transparent text-black font-medium hover:bg-amber-100"
+              }
+            `}
+          >
+            All Offers
+          </button>
+
+          {/* Flight */}
+          <button
+            onClick={() => setActive("flight")}
+            className={`rounded-4xl px-4 py-2 cursor-pointer transition-all 
+              ${
+                active === "flight"
+                  ? "bg-amber-600 text-white font-semibold" // active
+                  : "bg-transparent text-black font-medium hover:bg-amber-100"
+              }
+            `}
+          >
+            Flight
+          </button>
+        </div>
+
+        {/* Promotion List */}
+        <div className="grid grid-cols-1  md:grid-cols-2  gap-6 mt-6">
+          {items.map((item) => (
+            <div key={item.id} className="flex gap-5 rounded-lg shadow-md p-3 bg-white">
+              <div className="relative w-1/3 h-40 rounded-lg overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+            <div className="grid grid-cols-1">
+                <h2 className="text-xl font-bold mt-3">{item.title}</h2>
+              <p className="flex gap-1 text-amber-600 text-lg justify-start items-center text-center">Details <IoIosArrowForward /></p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-  )
+    </div>
+  );
 }
