@@ -22,10 +22,10 @@ export default function Banner() {
 
       {/* Center Title Text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-        <h1 className="text-2xl md:text-4xl lg:text-6xl text-gray-100 mb-3 drop-shadow-lg">
+        <h1 className="text-2xl md:text-4xl lg:text-6xl text-blue-100 mb-3 drop-shadow-lg">
           It&apos;s Time To
         </h1>
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-50 drop-shadow-lg">
           Explore The World
         </h1>
       </div>

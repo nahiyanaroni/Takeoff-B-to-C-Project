@@ -26,7 +26,7 @@ export default function Navbar() {
       : "bg-transparent"
     : "bg-blue-900";
 
-  // TEXT COLOR LOGIC ————👉 transparent হলে black, otherwise white
+ 
   const textColor = !isScrolled && isHome ? "text-black" : "text-white";
 
   return (
@@ -39,7 +39,11 @@ export default function Navbar() {
       <div className="navbar-start">
         {/* Mobile Menu */}
         <div className="dropdown lg:hidden">
-          <div tabIndex={0} role="button" className={`btn btn-ghost ${textColor}`}>
+          <div
+            tabIndex={0}
+            role="button"
+            className={`btn btn-ghost ${textColor}`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -59,9 +63,15 @@ export default function Navbar() {
             tabIndex={-1}
             className="menu menu-sm dropdown-content mt-3 z-[999] p-2 shadow bg-white text-black rounded-box w-52"
           >
-            <li><Link href="/"> Flight</Link></li>
-            <li><Link href="/promotions"> Promotions</Link></li>
-            <li><Link href="/business-class">Business Class</Link></li>
+            <li>
+              <Link href="/"> Flight</Link>
+            </li>
+            <li>
+              <Link href="/promotions"> Promotions</Link>
+            </li>
+            <li>
+              <Link href="/business-class">Business Class</Link>
+            </li>
           </ul>
         </div>
 
