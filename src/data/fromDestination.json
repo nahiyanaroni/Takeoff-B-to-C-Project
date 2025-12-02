@@ -1,0 +1,82 @@
+[
+    {
+        "id":"1",
+        "town":"Dhaka, Bangladash ",
+        "airportName":"Hazrat Shahjalal International Airport",
+        "shortName":"DAC"
+
+    },
+
+    {
+        "id":"2",
+        "town":"Cox's Bazar, Bangladesh ",
+        "airportName":"Cox's Bazar Airpor",
+        "shortName":"CXB"
+
+    },
+
+    {
+        "id":"3",
+        "town":"Thakurgaon, Bangladesh ",
+        "airportName":"Thakurgaon Airport",
+        "shortName":"DAC"
+
+    },
+
+    {
+        "id":"4",
+        "town":"Saidpur, Bangladesh ",
+        "airportName":"Saidpur Airport",
+        "shortName":"SPD"
+
+    },
+
+    {
+        "id":"5",
+        "town":"Ishwardi, Bangladesh",
+        "airportName":"Ishwardi Airport",
+        "shortName":"IRD"
+
+    },
+
+    {
+        "id":"6",
+        "town":"Dhaka, Bangladash ",
+        "airportName":"Hazrat Shahjalal International Airport",
+        "shortName":"DAC"
+
+    },
+
+    {
+        "id":"7",
+        "town":"Jashore, Bangladesh ",
+        "airportName":"Jashore Airport",
+        "shortName":"JSR"
+
+    },
+
+    {
+        "id":"8",
+        "town":"Rajshahi, Bangladesh",
+        "airportName":"Shah Mokhdum Airport",
+        "shortName":"RJH"
+
+    },
+
+    {
+        "id":"9",
+        "town":"Barishal, Bangladesh ",
+        "airportName":"Barishal Airport",
+        "shortName":"BZL"
+
+    },
+
+    {
+        "id":"10",
+        "town":"Chattogram, Bangladesh ",
+        "airportName":"Shah Amanat International Airport",
+        "shortName":"CGP"
+
+    }
+
+]

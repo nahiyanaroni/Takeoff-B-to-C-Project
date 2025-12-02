@@ -1,11 +1,26 @@
 "use client";
-import React, { useState } from "react";
 
-import { IoIosSearch } from "react-icons/io";
+import React, { useEffect, useState } from "react";
+import { BiSolidPlaneAlt } from "react-icons/bi";
+import Homedestination from "@/data/fromDestination.json";
 
 export default function FromToForm() {
   const [from, setFrom] = useState("Dhaka");
   const [to, setTo] = useState("Cox's Bazar");
+  const [drop, setDrop] = useState(false);
+  const [items, setItems] = useState(Homedestination);
+  const [fromDestination, setFromDestination] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+const filteredcity = fromDestination.filter((city) =>
+    city.shortName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    fetch("/fromDestination.json")
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  });
 
   const handleSwap = () => {
     setFrom(to);
@@ -23,18 +38,42 @@ export default function FromToForm() {
         {/* Main grid container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap- w-full">
           {/* FROM */}
-          <div className="flex items-center gap-2  border rounded-lg px-3 py-3 relative col-span-1">
-            <h3 className="font-semibold  text-gray-900 text-sm lg:text-base ">
-              {from}
-            </h3>
-            <div className="border-l-2 pl-2 border-gray-300  ">
-              <p className="text-xs text-black">From</p>
-              <p className="text-xs text-blue-600 truncate">
-                DAC, Hazrat Sha...
-              </p>
+          <div onClick={() => setDrop((prev) => !prev)} className="dropdown">
+            <div className=" relative flex items-center gap-2  border rounded-lg px-3 py-3  col-span-1">
+              <h3 className="font-semibold  text-gray-900 text-sm lg:text-base ">
+                {from}
+              </h3>
+              <div className="border-l-2 pl-2 border-gray-300  ">
+                <p className="text-xs text-black">From</p>
+                <p className="text-xs text-blue-600 truncate">
+                  DAC, Hazrat Sha...
+                </p>
+              </div>
             </div>
-          </div>
 
+            {drop ? (
+              <div className="absolute">
+                <div className="bg-white h-80 rounded-lg overflow-y-auto ">
+                  {items.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex justify-between  items-center rounded-lg  w-100 p-4 "
+                    >
+                      <div className="flex gap-3">
+                        {" "}
+                        <BiSolidPlaneAlt className=" text-amber-500 size-6" />
+                        <div>
+                          <h3 className="font-bold">{item.town}</h3>
+                          <p className="text-gray-500">{item.airportName}</p>
+                        </div>
+                      </div>
+                      <h2 className="text-lg font-bold">{item.shortName}</h2>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
           {/* SWAP BUTTON */}
           <button
             type="button"
@@ -42,7 +81,7 @@ export default function FromToForm() {
             className="
         /* Mobile - floating center button */
         absolute
-        right-0 top-25 md:top-6 md:left-74  lg:left-30 xl:left-56
+        right-0 top-20 md:top-6 md:left-75  lg:left-45 xl:left-56
         -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0
        bg-gradient-to-r from-yellow-400 to-orange-500   hover:from-yellow-500 hover:to-orange-600 
         text-white
@@ -81,7 +120,10 @@ export default function FromToForm() {
             </h3>
             <div className="border-l-2 pl-2 border-gray-300  ">
               <p className="text-xs text-black">To</p>
-              <p className="text-xs text-blue-600 truncate"> CXB, Cox's Ba... </p>
+              <p className="text-xs text-blue-600 truncate">
+                {" "}
+                CXB, Cox's Ba...{" "}
+              </p>
             </div>
           </div>
 

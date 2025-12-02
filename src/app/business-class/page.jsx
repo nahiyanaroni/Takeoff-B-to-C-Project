@@ -10,27 +10,27 @@ import React from "react";
 export default function Page() {
   return (
     <div className=" bg-white min-h-screen">
-      <div className="relative w-full h-230 md:h-200 xl:h-240 pt-10">
+      <div className="relative w-full h-230 md:h-210 lg:200 xl:h-240 pt-10">
         <Image
           src="/business.jpg"
           alt="promotion-banner"
           fill
-          className="  object-cover  quality-100 brightness-75"
+          className="object-cover  quality-100 brightness-75"
           priority
         />
-
-        <div className="absolute inset-0 flex flex-col px-4 md:px-100 mt-40 md:mt-90">
-          <h1 className="text-3xl md:text-2xl lg:text-6xl font- text-gray-100 mb-3 drop-shadow-lg">
+          
+        <div className="absolute  inset-0 flex flex-col px-4 md:pl-10 lg:pl-20 xl:pl-50 2xl:pl-100 mt-40 md:mt-70 lg:mt-60 xl:mt-90">
+          <h1 className=" max-w-[596px] text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-100 mb-3 drop-shadow-lg">
             Discover the Best Business Class Flight Deals with Takeoff Travels
           </h1>
-          <p className="text-lg md:text-lg lg:text-xl  text-white drop-shadow-lg">
+          <p className="text-lg md:text-xl  lg:text-2xl  text-white drop-shadow-lg">
             Discover premium travel experiences at unbeatable prices.
           </p>
         </div>
 
         {/* Search Card */}
-        <div className="absolute w-full px-2 sm:px-6 md:px-10 lg:px-20 xl:px-100 top-100 md:top-80 lg:top-0 xl:top-150 ">
-          <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6"> 
+        <div className="absolute w-full px-2 sm:px-6 md:px-10 lg:px-20 xl:px-50 2xl:px-100 top-100 md:top-110 lg:top-120 xl:top-150 ">
+          <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6">  
             {/* Trip Type Radio Buttons */}
             <RadioGroup
               defaultValue="option-one"
@@ -61,7 +61,7 @@ export default function Page() {
       <div className="flex items-center space-x-2 border-r pr-4">
 <IoIosPeople  className=" text-gray-400  size-8  "/>
 </div>
-<p className=" text-black  mt-1 pl-3 ">1 Traveller</p>
+<p className=" text-black font-bold  mt-1 pl-3 ">1 Traveller</p>
   </div>
 
 <FaAngleDown className=" mt-2" />
@@ -73,7 +73,7 @@ export default function Page() {
       <div className="flex items-center space-x-2 border-r pr-4">
 <TbArmchair  className=" text-gray-400  size-7 "/>
 </div>
-<p className=" text-black  mt-1 pl-3 ">1 Traveller</p>
+<p className=" text-black font-bold  mt-1 pl-3 ">Business</p>
   </div>
 
 <FaAngleDown className=" mt-2" />
