@@ -1,7 +1,7 @@
 [
     {
         "id":"1",
-        "town":"Dhaka, Bangladash ",
+        "town":"Dhaka",
         "airportName":"Hazrat Shahjalal International Airport",
         "shortName":"DAC"
 
@@ -9,7 +9,7 @@
 
     {
         "id":"2",
-        "town":"Cox's Bazar, Bangladesh ",
+        "town":"Cox's Bazar ",
         "airportName":"Cox's Bazar Airpor",
         "shortName":"CXB"
 
@@ -17,7 +17,7 @@
 
     {
         "id":"3",
-        "town":"Thakurgaon, Bangladesh ",
+        "town":"Thakurgaon ",
         "airportName":"Thakurgaon Airport",
         "shortName":"DAC"
 
@@ -25,7 +25,7 @@
 
     {
         "id":"4",
-        "town":"Saidpur, Bangladesh ",
+        "town":"Saidpur ",
         "airportName":"Saidpur Airport",
         "shortName":"SPD"
 
@@ -33,47 +33,41 @@
 
     {
         "id":"5",
-        "town":"Ishwardi, Bangladesh",
+        "town":"Ishwardi",
         "airportName":"Ishwardi Airport",
         "shortName":"IRD"
 
     },
 
+    
+
     {
         "id":"6",
-        "town":"Dhaka, Bangladash ",
-        "airportName":"Hazrat Shahjalal International Airport",
-        "shortName":"DAC"
-
-    },
-
-    {
-        "id":"7",
-        "town":"Jashore, Bangladesh ",
+        "town":"Jashore ",
         "airportName":"Jashore Airport",
         "shortName":"JSR"
 
     },
 
     {
-        "id":"8",
-        "town":"Rajshahi, Bangladesh",
+        "id":"7",
+        "town":"Rajshahi",
         "airportName":"Shah Mokhdum Airport",
         "shortName":"RJH"
 
     },
 
     {
-        "id":"9",
-        "town":"Barishal, Bangladesh ",
+        "id":"8",
+        "town":"Barishal ",
         "airportName":"Barishal Airport",
         "shortName":"BZL"
 
     },
 
     {
-        "id":"10",
-        "town":"Chattogram, Bangladesh ",
+        "id":"9",
+        "town":"Chattogram ",
         "airportName":"Shah Amanat International Airport",
         "shortName":"CGP"
 

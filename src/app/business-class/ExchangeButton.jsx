@@ -6,64 +6,106 @@ import Homedestination from "@/data/fromDestination.json";
 
 export default function FromToForm() {
   const [from, setFrom] = useState("Dhaka");
+  const [airportFrom, setAirportFrom] = useState(
+    "DAC,Hazrat Shahjalal International Airport"
+  );
+  const [airportTo, setAirportTo] = useState("DAC,Cox's Bazar Airport");
   const [to, setTo] = useState("Cox's Bazar");
-  const [drop, setDrop] = useState(false);
+  const [fromDrop, setFromDrop] = useState(false);
+  const [toDrop, setToDrop] = useState(false);
+
   const [items, setItems] = useState(Homedestination);
   const [fromDestination, setFromDestination] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [fromSearchTerm, setFromSearchTerm] = useState(""); // Separate search term for "from"
+  const [toSearchTerm, setToSearchTerm] = useState("");
 
-const filteredcity = fromDestination.filter((city) =>
-    city.shortName.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredcity = items.filter(
+    (city) =>
+      city.town.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      city.airportName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      city.shortName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
     fetch("/fromDestination.json")
       .then((res) => res.json())
       .then((data) => setItems(data));
-  });
+  },[]);
 
   const handleSwap = () => {
     setFrom(to);
     setTo(from);
+    setAirportFrom(airportTo);
+    setAirportTo(airportFrom);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`From: ${from}\nTo: ${to}`);
   };
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="py-4 px-0 rounded-xl flex flex-col lg:flex-row gap-4 lg:gap-3 justify-between items-center relative w-full">
         {/* Main grid container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap- w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap- w-full ">
           {/* FROM */}
-          <div onClick={() => setDrop((prev) => !prev)} className="dropdown">
-            <div className=" relative flex items-center gap-2  border rounded-lg px-3 py-3  col-span-1">
+          <div
+            onClick={() => {
+              setFromDrop(!fromDrop);
+              setToDrop(false);
+              handleInputFocus();
+              
+            }}
+            className="dropdown "
+          >
+            { isInputFocused ?<div>
+              <input 
+              
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Airport/City"
+                className="w-full border rounded-lg px-3 py-3 col-span-1"
+              />
+            </div>:
+            <div className="relative flex items-center gap-2 border rounded-lg px-3 py-3  col-span-1">
               <h3 className="font-semibold  text-gray-900 text-sm lg:text-base ">
                 {from}
               </h3>
               <div className="border-l-2 pl-2 border-gray-300  ">
                 <p className="text-xs text-black">From</p>
-                <p className="text-xs text-blue-600 truncate">
-                  DAC, Hazrat Sha...
+                <p className="text-xs text-blue-600 truncate ">
+                  {airportFrom.substring(0, 15)}...
                 </p>
               </div>
-            </div>
+            </div>}
 
-            {drop ? (
+            {fromDrop ? (
               <div className="absolute">
                 <div className="bg-white h-80 rounded-lg overflow-y-auto ">
-                  {items.map((item) => (
+                  {filteredcity.map((item) => (
                     <div
                       key={item.id}
+                      onClick={() => {
+                        setFrom(item.town);
+                        setAirportFrom(
+                          `${item.shortName}, ${item.airportName}`
+                        );
+                        setFromDrop(false);
+                        setSearchTerm("");
+                      }}
                       className="flex justify-between  items-center rounded-lg  w-100 p-4 "
                     >
                       <div className="flex gap-3">
-                        {" "}
                         <BiSolidPlaneAlt className=" text-amber-500 size-6" />
                         <div>
-                          <h3 className="font-bold">{item.town}</h3>
+                          <h3 className="font-bold">{item.town}, Bangladash</h3>
                           <p className="text-gray-500">{item.airportName}</p>
                         </div>
                       </div>
@@ -114,17 +156,51 @@ const filteredcity = fromDestination.filter((city) =>
           </button>
 
           {/* TO */}
-          <div className="flex items-center gap-2  border rounded-lg px-4  relative col-span-1">
-            <h3 className="font-semibold pr-2 text-gray-900 text-sm lg:text-base">
-              {to}
-            </h3>
-            <div className="border-l-2 pl-2 border-gray-300  ">
-              <p className="text-xs text-black">To</p>
-              <p className="text-xs text-blue-600 truncate">
-                {" "}
-                CXB, Cox's Ba...{" "}
-              </p>
+          <div
+            onClick={() => {
+              setToDrop(!toDrop);
+              setFromDrop(false); // close FROM dropdown
+            }}
+            className="dropdown"
+          >
+            <div className=" relative flex items-center gap-2  border rounded-lg px-3 py-3  col-span-1">
+              <h3 className="font-semibold pr-2 text-gray-900 text-sm lg:text-base">
+                {to}
+              </h3>
+              <div className="border-l-2 pl-2 border-gray-300  ">
+                <p className="text-xs text-black">To</p>
+                <p className="text-xs text-blue-600 truncate">
+                  {airportTo.substring(0, 15)}...
+                </p>
+              </div>
             </div>
+            {toDrop ? (
+              <div className="absolute">
+                <div className="bg-white h-80 rounded-lg overflow-y-auto ">
+                  {filteredcity.map((item) => (
+                    <div
+                      key={item.id}
+                      onClick={() => {
+                        setTo(item.town);
+                        setAirportTo(`${item.shortName}, ${item.airportName}`);
+                        setToDrop(false);
+                        setSearchTerm("");
+                      }}
+                      className="flex justify-between  items-center rounded-lg  w-100 p-4 "
+                    >
+                      <div className="flex gap-3">
+                        <BiSolidPlaneAlt className=" text-amber-500 size-6" />
+                        <div>
+                          <h3 className="font-bold">{item.town}, Bangladash</h3>
+                          <p className="text-gray-500">{item.airportName}</p>
+                        </div>
+                      </div>
+                      <h2 className="text-lg font-bold">{item.shortName}</h2>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
 
           {/* DEPARTURE & RETURN CONTAINER */}
