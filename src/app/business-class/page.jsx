@@ -6,6 +6,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import { TbArmchair } from "react-icons/tb";
 import Image from "next/image";
 import React from "react";
+import FlyBusinessClass from "./FlyBusinessClass";
 
 export default function Page() {
   return (
@@ -90,6 +91,9 @@ rounded-full shadow-md"
           </div>
         </div>
       </div>
+<div className="bg-amber-50">
+  <FlyBusinessClass />
+</div>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiSolidPlaneAlt } from "react-icons/bi";
 import Homedestination from "@/data/fromDestination.json";
 
 export default function FromToForm() {
   const [from, setFrom] = useState("Dhaka");
+  console.log(from);
   const [airportFrom, setAirportFrom] = useState(
     "DAC,Hazrat Shahjalal International Airport"
   );
@@ -13,6 +14,7 @@ export default function FromToForm() {
   const [to, setTo] = useState("Cox's Bazar");
   const [fromDrop, setFromDrop] = useState(false);
   const [toDrop, setToDrop] = useState(false);
+const fromRef = useRef(null);
 
   const [items, setItems] = useState(Homedestination);
   const [fromDestination, setFromDestination] = useState([]);
@@ -20,12 +22,31 @@ export default function FromToForm() {
   const [fromSearchTerm, setFromSearchTerm] = useState(""); // Separate search term for "from"
   const [toSearchTerm, setToSearchTerm] = useState("");
 
-  const filteredcity = items.filter(
+  const filteredcityFrom = items.filter(
     (city) =>
-      city.town.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      city.airportName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      city.shortName.toLowerCase().includes(searchTerm.toLowerCase())
+      city.town.toLowerCase().includes(fromSearchTerm.toLowerCase()) ||
+      city.airportName.toLowerCase().includes(fromSearchTerm.toLowerCase()) ||
+      city.shortName.toLowerCase().includes(fromSearchTerm.toLowerCase())
   );
+
+  const filteredcityTo = items.filter(
+    (city) =>
+      city.town.toLowerCase().includes(toSearchTerm.toLowerCase()) ||
+      city.airportName.toLowerCase().includes(toSearchTerm.toLowerCase()) ||
+      city.shortName.toLowerCase().includes(toSearchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+  function handleClickOutside(e) {
+    if (fromRef.current && !fromRef.current.contains(e.target)) {
+      setFromDrop(false);
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, []);
+
 
   useEffect(() => {
     fetch("/fromDestination.json")
@@ -44,37 +65,43 @@ export default function FromToForm() {
     e.preventDefault();
     alert(`From: ${from}\nTo: ${to}`);
   };
-  const [isInputFocused, setIsInputFocused] = useState(false);
-  const handleInputFocus = () => {
-    setIsInputFocused(true);
+  const [isFromInputFocused, setIsFromInputFocused] = useState(false);
+  const fromHandleInputFocus = () => {
+    setIsFromInputFocused(true);
   }
+
+   const [isToInputFocused, setIsToInputFocused] = useState(false);
+  const toHandleInputFocus = () => {
+    setIsToInputFocused(true);
+  }
+  const [selectedCity, setSelectedCity] = useState({});
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="py-4 px-0 rounded-xl flex flex-col lg:flex-row gap-4 lg:gap-3 justify-between items-center relative w-full">
         {/* Main grid container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap- w-full ">
+        <div  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap- w-full  ">
           {/* FROM */}
           <div
             onClick={() => {
               setFromDrop(!fromDrop);
               setToDrop(false);
-              handleInputFocus();
-              
+             
             }}
             className="dropdown "
           >
-            { isInputFocused ?<div>
+            { isFromInputFocused ?<div className="w-full border rounded-lg px-4 py-1 col-span-1 text-sm font-bold">
+              <span>From</span>
               <input 
-              
                 type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={fromSearchTerm}
+                onChange={(e) => setFromSearchTerm(e.target.value)}
                 placeholder="Airport/City"
-                className="w-full border rounded-lg px-3 py-3 col-span-1"
+                className="border-none outline-0  font-normal"
+                
               />
             </div>:
-            <div className="relative flex items-center gap-2 border rounded-lg px-3 py-3  col-span-1">
+            <div onClick={fromHandleInputFocus} className="relative flex items-center gap-2 border rounded-lg px-3 py-3  col-span-1">
               <h3 className="font-semibold  text-gray-900 text-sm lg:text-base ">
                 {from}
               </h3>
@@ -88,8 +115,8 @@ export default function FromToForm() {
 
             {fromDrop ? (
               <div className="absolute">
-                <div className="bg-white h-80 rounded-lg overflow-y-auto ">
-                  {filteredcity.map((item) => (
+                <div className="bg-white h-80 rounded-lg overflow-y-auto">
+                  {filteredcityFrom.map((item) => (
                     <div
                       key={item.id}
                       onClick={() => {
@@ -99,6 +126,12 @@ export default function FromToForm() {
                         );
                         setFromDrop(false);
                         setSearchTerm("");
+                        setFrom(item.town);
+                        setAirportFrom(item.airportName)
+                        setIsFromInputFocused(false);
+                        setFromSearchTerm("");
+                        setSelectedCity(item);
+                        
                       }}
                       className="flex justify-between  items-center rounded-lg  w-100 p-4 "
                     >
@@ -163,7 +196,18 @@ export default function FromToForm() {
             }}
             className="dropdown"
           >
-            <div className=" relative flex items-center gap-2  border rounded-lg px-3 py-3  col-span-1">
+             { isToInputFocused ?<div className="w-full border rounded-lg px-3 py-1 col-span-1 text-sm font-bold">
+               <h3>To</h3>
+              <input 
+              
+                type="text"
+                value={toSearchTerm}
+                onChange={(e) => setToSearchTerm(e.target.value)}
+                placeholder="Airport/City"
+                className="border-none outline-0 font-normal"
+              />
+            </div>:
+            <div onClick={toHandleInputFocus} className=" relative flex items-center gap-2  border rounded-lg px-3 py-3  col-span-1">
               <h3 className="font-semibold pr-2 text-gray-900 text-sm lg:text-base">
                 {to}
               </h3>
@@ -173,18 +217,23 @@ export default function FromToForm() {
                   {airportTo.substring(0, 15)}...
                 </p>
               </div>
-            </div>
+            </div>}
             {toDrop ? (
               <div className="absolute">
                 <div className="bg-white h-80 rounded-lg overflow-y-auto ">
-                  {filteredcity.map((item) => (
+                  {filteredcityTo.map((item) => (
                     <div
                       key={item.id}
                       onClick={() => {
                         setTo(item.town);
                         setAirportTo(`${item.shortName}, ${item.airportName}`);
-                        setToDrop(false);
-                        setSearchTerm("");
+                       setToDrop(false);
+                        setToSearchTerm("");
+                        setTo(item.town);
+                        setAirportTo(item.airportName)
+                        setIsToInputFocused(false);
+                        setToSearchTerm("");
+                        setSelectedCity(item);
                       }}
                       className="flex justify-between  items-center rounded-lg  w-100 p-4 "
                     >
