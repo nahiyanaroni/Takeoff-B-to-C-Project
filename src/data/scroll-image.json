@@ -1,0 +1,54 @@
+ [
+    
+    {
+        "id": 1,
+        "image": "/beverages.svg",
+        "title": "Premium Beverages"
+    },
+    {
+        "id": 2,
+        "image": "/screens.svg",
+        "title": "Larger Personal Screens"
+    },
+    {
+        "id": 3,
+        "image": "/medical.svg",
+        "title": "Exclusive Amenity Kits"
+    },
+    {
+        "id": 4,
+        "image": "/wifi.svg",
+        "title": "Access to In-Flight Wi-Fi"
+    },
+    {
+        "id": 5,
+        "image": "/check_in.svg",
+        "title": "Priority Check-in & Boarding"
+    },
+    {
+        "id": 6,
+        "image": "/Ticket.svg",
+        "title": "Increased Baggage Allowance"
+    },
+    {
+        "id": 7,
+        "image": "/holiday.svg",
+        "title": "Lounge Access"
+    },
+    {
+        "id": 8,
+        "image": "/seat.svg",
+        "title": "Lie-Flat or Deep Recline Seats"
+    },
+    {
+        "id": 9,
+        "image": "/privacy.svg",
+        "title": "Extra Space & Privacy"
+    },
+    {
+        "id": 10,
+        "image": "/meals.svg",
+        "title": "Gourmet Meals"
+    }
+     
+]

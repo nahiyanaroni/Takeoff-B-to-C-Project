@@ -7,7 +7,7 @@ export default function FlightTracking() {
       <div >
         <h1 className=" mb-4 text-4xl font-bold">Flight Tracking Made Easy</h1>
         <p>With Takeoff, track your flight is a breeze! <br /> Stay updated on your flight effortlessly using our handy flight <br /> tracker .</p>
-        <button className="mt-5 bg-amber-600 text-white flex items-center items-center gap-2 p-3 rounded-4xl">Open Flight Tracker <FaArrowRightLong /> </button>
+        <button className="mt-5 bg-gradient-to-r from-yellow-400 to-orange-500  text-white flex items-center items-center gap-2 p-3 rounded-4xl">Open Flight Tracker <FaArrowRightLong /> </button>
       </div>
 
       <div className="flex justify-end items-center">
